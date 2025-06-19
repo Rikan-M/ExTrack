@@ -14,7 +14,7 @@ def create_app():
     app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', os.urandom(24).hex())
     csrf = CSRFProtect(app)
     
-    db_url = os.environ.get('DATABASE_URL', 'sqlite:///local.db').replace('postgres://', 'postgresql://')
+    db_url = os.environ['DATABASE_URL'].replace('postgres://', 'postgresql+psycopg://')
     app.config['SQLALCHEMY_DATABASE_URI'] = db_url
     app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
         'pool_pre_ping': True,
