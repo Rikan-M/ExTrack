@@ -56,25 +56,21 @@ def get_budget_status(category_id):
     category=Category.query.filter_by(id=category_id).one()
     category_name=category.name
     remaining_days=budget.end_date-today
-    date.day
-    if total_spent>0 and remaining>0:
-        success_rate=min(((remaining/remaining_days.days)/(total_spent/(today-budget.start_date).days))*100,100)
+    if budget.amount > 0:
+        percentage_used = min((total_spent / budget.amount) * 100, 100)
     else:
-        if total_spent>0:
-            success_rate=0
-        elif remaining>0:
-            success_rate=100
+        percentage_used = 0
+
     is_active="active" if remaining>=0 else "deactive"
     return {
         'budget':budget,
         'category_name':category_name,
         'total_spent':total_spent,
         'remaining':remaining,
-        'percentage_used':min((total_spent/budget.amount)*100,100),
+        'percentage_used':percentage_used,
         'period_start':budget.start_date,
         'period_end':budget.end_date,
         'remaining_days':remaining_days,
-        "success_rate":success_rate,
         "is_active":is_active
     }
 @cont_bp.route("/")

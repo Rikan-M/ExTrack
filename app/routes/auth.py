@@ -173,7 +173,15 @@ def logout():
     flash("You have successfully loged out","info")
     return redirect(url_for("auth.login"))
            
-        
+@auth_bp.route('/db-test')
+def db_test():
+    try:
+        from sqlalchemy import text
+        with db.engine.connect() as conn:
+            result = conn.scalar(text("SELECT 1"))
+            return f"✅ Database connected! Result: {result}"
+    except Exception as e:
+        return f"❌ Connection failed: {str(e)}"      
 
 
     

@@ -43,11 +43,7 @@
     <div class="budBar">
         <div class="budBarPer" style="width: {{ budget['percentage_used'] }}%;"></div>
     </div>
-    <span>Success Rate : {{ budget['success_rate'] }}%</span>
-    <div class="budBar">
-        <!-- Dynamic width based on percentage used -->
-        <div class="budBarPer" style="width: {{ budget['success_rate'] }}%;"></div>
-    </div>
+    
 </div>
 {% endfor %}
 </div>
