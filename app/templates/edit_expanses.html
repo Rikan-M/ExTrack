@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST" class="inpSec">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="inpBarTitle">Edit Expanse</div>
+    <div class="inpContainer">
+        <input type="number" name="amount" placeholder="Amount" class="add-inp alignFlexEnd">
+        <div class="select-box">
+            <label for="pay_method">Payment Method</label>
+            <select name="pay_method" id="pay_method" class="add-inp">s
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="Bank Transfer">Bank Transfer</option>
+                <option value="Mobile Payment">Mobile Payment</option>
+                <option value="Cash">Cash</option>
+            </select>
+        </div>
+        <input type="text" name="location" maxlength="100" placeholder="Location" class="add-inp alignFlexEnd">
+        
+    </div>
+    <div class="inpContainer">            
+        <input type="text" name="title" maxlength="50" placeholder="Title" class="add-inp alignFlexEnd">
+        <div class="select-box">
+            <label for="category_name">Category</label>
+            <select name="category_id" id="category_name" class="add-inp">   
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <input type="text" name="receipt_filename" maxlength="100" placeholder="Receipt Filename" class="add-inp alignFlexEnd">
+    </div>         
+    <input type="submit" value="Done" class="add-btn">
+</form>
+{% endblock %}

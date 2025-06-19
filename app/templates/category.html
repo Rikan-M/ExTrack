@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Category{% endblock %}
+{% block content %}
+<h1 class="pageTitle"> {{ category.name }} </h1>
+<div class="description">
+    <div class="inpBarTitle">Description</div> 
+    <p>{{ category.description }}</p>
+</div>
+
+<form action="{{ url_for('cont.add_expanse') }}" method="POST" class="inpSec">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="inpBarTitle">Add New Expanse</div>
+    <div class="inpContainer">
+        <input type="number" name="amount" required placeholder="Amount" class="add-inp alignFlexEnd">
+        <div class="select-box">
+            <label for="pay_method">Payment Method</label>
+            <select name="pay_method" id="pay_method" class="add-inp add-inp-slct">
+                <option value="Credit Card">Credit Card</option>
+                <option value="Debit Card">Debit Card</option>
+                <option value="Bank Transfer">Bank Transfer</option>
+                <option value="Mobile Payment">Mobile Payment</option>
+                <option value="Cash">Cash</option>
+            </select>
+        </div>
+        <input type="text" name="location" maxlength="100" placeholder="Location" class="add-inp alignFlexEnd">
+        
+    </div>
+    <div class="inpContainer">            
+        <input type="text" name="title" required maxlength="50" placeholder="Title" class="add-inp alignFlexEnd">
+        <div class="select-box">
+            <label for="category_name">Category</label>
+            <select name="category_id" id="category_name" required class="add-inp add-inp-slct">   
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            </select>
+        </div>
+        <input type="text" name="receipt_filename" maxlength="100" placeholder="Receipt Filename" class="add-inp alignFlexEnd">
+    </div> 
+    <div class="addBtn-sec">
+        <input type="submit" value="+Add" class="add-btn">
+    </div>        
+    
+</form>
+
+<div class="container">
+    <form action="{{ url_for('cont.sort_date') }}" method="POST" class="sort-exp">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="date" name="date">
+        <input type="submit" value="Sort">
+    </form>
+    {% if expenses %}  
+    <div class="show-exp">
+        <div class="exp-heading">
+            <div class="exp-rows">
+                <div class="expBox exp-title expHead">Title</div>
+                <div class="expBox exp-amount expHead">Amount</div>
+                <div class="expBox exp-date expHead">Date</div>
+                <div class="expBox exp-details expHead">Show Deatils</div>
+            </div>
+        </div>
+        <div class="exp-content">
+            {% for expanse in expenses %}
+            <div class="exp-rows">
+                <div class="expBox exp-title">{{ expanse.title }}</div>
+                <div class="expBox exp-amount">{{ expanse.amount }}</div>
+                <div class="expBox exp-date">{{ expanse.date }}</div>
+                <div class="expBox exp-details"><button class="dropbtn" onclick="dropDownShow('dropContent-{{ expanse.id }}')"> Details > </button></div>
+            </div>
+                <div class="dropContent" id="dropContent-{{ expanse.id }}">
+                    <div>Created on : {{ expanse.created_on }}</div>
+                    <div>Updated on : {{ expanse.updated_on }}</div>
+                    <div>Payment Method : {{ expanse.payment_method }}</div>
+                    <div>Location : {{ expanse.location }}</div>
+                    <div>Receipt Filename : {{ expanse.receipt_filename }}</div> 
+                    <div class="btn-section">
+                        <form action="{{ url_for('cont.edit_exp',exp_id=expanse.id) }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <input type="submit" value="Edit" class="dropEdit dropedBtn">
+                        </form>
+                        <form action="{{ url_for('cont.delete_exp',exp_id=expanse.id) }}" method="POST">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <input type="submit" value="Delete" class="dropDel dropedBtn">
+                        </form>
+                        <input type="submit" value="Close" onclick="dropDownShow('dropContent-{{ expanse.id }}')" class="dropClose dropedBtn">
+                    </div>
+                    
+                </div>
+            
+            {% endfor %}
+        </div>
+    </div>
+ 
+</div>       
+{% endif %}      
+{% endblock %}

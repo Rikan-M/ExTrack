@@ -1,0 +1,18 @@
+{% extends "base_auth.html" %}
+
+{% block title %}Registration{% endblock %}
+
+
+{% block content %}
+<div class="auth-des gls-efct">
+<div class="auth-title">Register</div>
+<form method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="text" placeholder="Username" name="username" class="form-inp gls-efct" maxlength="64">
+    <input type="text" placeholder="Email" name="email" class="form-inp gls-efct" maxlength="120">
+    <input type="text" placeholder="Password" name="password" class="form-inp gls-efct">
+    <input type="submit" value="Register" class="form-but gls-efct">
+</form>
+<a href="{{ url_for('auth.login') }}">Login</a>
+</div>
+{% endblock %}

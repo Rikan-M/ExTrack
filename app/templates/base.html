@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Expanse Tracker{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/footer.css') }}">
+</head>
+<body>
+    <header>
+       <nav>
+        <h1>ExTrack</h1>
+        <div class="nav-btns">
+            <ul>
+                <li>
+                    <a href="{{ url_for('cont.dashboard') }}">
+                        <div class="nav-btn">Home</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('cont.budget') }}">
+                        <div class="nav-btn">Budget</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ url_for('cont.help') }}">
+                        <div class="nav-btn">Help</div>
+                    </a>
+                </li>
+            </ul>
+            <form action="{{ url_for('auth.logout') }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="submit" value="Logout" class="logout-btn">
+            </form>
+
+        </div>
+       </nav> 
+
+       <div class="status-bar">
+        {% with messages=get_flashed_messages(with_categories=True) %}
+        {% for cate,msg in messages %}
+        <p class="{{cate|lower}} flashed-msg">{{msg}}</p>
+        {% endfor %}
+        {% endwith %}
+    </div>
+    </header>
+    <main>
+        
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <div class="feedback-board">
+            <div class="fb-title">Leave a Review</div>            
+            <form action="{{ url_for('auth.feedback') }}"method="POST" class="feedback-from"> 
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="star-rating">
+                    {% for i in range(5,0,-1) %}
+                    <input type="radio" name="star" id="star-{{ i }}" value= "{{i}}">
+                    <label for="star-{{ i }}">&#9733</label>
+                    {% endfor %}
+                </div>
+                <textarea name="feedback" class="long-txt" placeholder="Your Feedback" required maxlength="500"></textarea>
+                <input type="submit" value="Send Feedback" class="feedback-btn">
+            </form>
+        </div>
+        
+        <span class="acknoledgement">@2025 made by rikan maji</span>
+    </footer>
+    <script src="{{ url_for('static',filename='js/script.js') }}" ></script>
+</body>
+</html>

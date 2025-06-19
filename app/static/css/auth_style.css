@@ -1,0 +1,239 @@
+*{
+    padding: 0;
+    margin: 0;
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+body{
+    background-color:#EAEFEF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    align-items: center;
+
+}
+header{
+    width: 100%;
+    font-size: 2rem;
+}
+main{
+    display:flex;
+    justify-content: center;
+    width: 100%;
+}
+.hero-sec{
+    width:100%;
+}
+.hero-title{
+    width:100%;
+    padding:2rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333446;
+
+}
+.statusbar{
+    width: 100%;
+    min-height: 4rem;
+    background-color: #7F8CAA;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.flashed-msg{
+    font-size: medium;
+    font-weight: 600;
+
+}
+.error{color:#fcceb3;font-size:large;font-weight: 100;}
+.success{color:#b3fcca;font-size:large;font-weight: 100;}
+.info{color:#ffffff;font-size:large;font-weight: 100;}
+.gls-efct{
+    border:0px solid transparent;
+    background-color: rgba(56, 255, 11, 0.027);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid rgba(255,255,255,0.4);
+    border-left: 1px solid rgba(255,255,255,0.3);
+    box-shadow: 3px 3px 3px rgba(0,0,0,0.089);
+    
+}
+.auth-des{
+    height:40rem;
+    width: 25rem;
+    padding: 1rem;
+    border-radius: 2rem;
+    margin: 2rem 0;
+
+}
+.auth-title{
+    display: flex;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    width: 100%;
+    height:10%;
+    color:#678f74;
+}
+.auth-des form{
+    height: 80%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.form-inp{
+    height: 2.5rem;
+    width: 20rem;
+    border-radius: 1.5rem;
+    padding: 0 1rem;
+    color: #678f74;
+    margin-top: 1rem;
+    font-size: large;
+
+
+}
+.form-but{
+    height: 2.5rem;
+    width: 20rem;
+    border-radius: 1.5rem;
+    padding: 0 1rem;
+    color: #678f74;
+    margin-top: 2rem;
+    font-size: large;
+    
+}
+.auth-des a{
+    text-decoration: none;
+    color: #678f74;
+    align-self: flex-start;
+    font-weight: 100;
+}
+.success-board{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 20rem;
+    width:50%;
+    border: 1px solid white;
+    border-radius: 2rem;
+    padding: 2rem;
+    margin: 4rem 0;
+
+}
+.success-title{
+    font-size: x-large;
+    height:20%;
+}
+.next-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 70%;
+    
+}
+.next-div li{
+    font-size: large;
+    color: #678f74;
+}
+.next-btn{
+    color: #678f74;
+    height:2rem;
+    width:6rem;
+    border-radius: 1rem;
+    font-size: larger;
+    align-self: flex-end;
+}
+@media (max-width:1024px) {
+    /*Auth Section*/
+    .hero-title{
+        padding:1rem 0;
+        font-size: large;
+    
+    }
+    .success-title{
+        margin-top: 1.5rem;
+        font-size: larger;
+    }
+}
+@media (max-width:600px) {
+    header{
+        font-size:large;
+    }
+   
+    .hero-title{
+        padding:0.5rem 0;
+    }
+    .hero-title h1{
+        font-size: larger;
+    }
+    .hero-title h3{
+        font-size: medium;
+    }
+    .statusbar{
+        min-height:2rem;
+    }
+    .flashed-msg{
+        font-size: 14px;
+    
+    }
+    .error{color:#fcceb3;font-weight: 100;}
+    .success{color:#b3fcca;font-weight: 100;}
+    .info{color:#ffffff;font-weight: 100;}
+
+    
+    .auth-des{
+        height:22rem;
+        width: 15rem;
+        padding: 0.8rem;
+    }
+    .auth-title{
+        font-size: 1.5rem;
+    }
+    .form-inp{
+        height: 2.2rem;
+        width: 80%;
+        margin-top: 1rem;
+        font-size: small;
+    
+    
+    }
+    .form-but{
+        height: 2.2rem;
+        width: 80%;        
+    }
+    .auth-des a{
+        font-size: medium;
+    }
+    .success-board{
+        height: 15rem;
+        width:80%;
+        padding: 1.5rem;
+        margin: 3rem 0;
+    
+    }
+    .success-title{
+        font-size: medium;
+        height:20%;
+    }
+    
+    .next-div li{
+        font-size: small;
+    }
+    .next-btn{
+        height:1.5rem;
+        width:4rem;
+    
+        font-size: medium;
+        
+    }
+}
+
+
+
+

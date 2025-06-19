@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}Budgets{% endblock %}
+{% block content %}
+<h1 class="pageTitle"> Create Budgets </h1>
+<div class="inpBarTitle">Track your Expanses! Compare your targeted Budget</div> 
+
+<form action="{{ url_for('cont.add_budget') }}" method="POST" class="inpSec">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="inpBarTitle">Add New Budget</div>
+    <div class="inpContainer">
+        <input type="number" name="amount" required placeholder="Amount" class="add-inp alignFlexEnd">
+        <div class="select-box">
+            <label for="pay_method">Period</label>
+            <select name="period" id="pay_method" class="add-inp">
+                <option value="yearly">Yearly</option>
+                <option value="monthly">Monthy</option>
+                <option value="weekly">Weekly</option>
+            </select>
+        </div>
+        <div class="select-box">
+            <label for="category_name">Category</label>
+            <select name="category_id" id="category_name" required class="add-inp">   
+                {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </div>
+    <input type="submit" value="+Add" class="add-btn">
+</form>
+{% if budgets %}
+<div class="container">
+{% for budget in budgets %}
+<div class="budget gls-efct">
+    <span>Budget Category : {{ budget['category_name'] }}</span>
+    <span>Budget Start : {{ budget['period_start'] }}</span>
+    <span>Budget End : {{ budget['period_end'] }}</span>
+    <span>Budget Amount : {{ budget['budget'].amount }}</span>
+    <span>Total Spent : {{ budget['total_spent'] }}</span>
+    <span class="{{ budget['is_active'] }}">Remaining Amount: {{ budget['remaining'] }}</span>
+    <span>Remaining Days: {{ budget['remaining_days'] }}</span>
+    <span>Percentage Used : {{ budget['percentage_used'] }}%</span>
+    <div class="budBar">
+        <div class="budBarPer" style="width: {{ budget['percentage_used'] }}%;"></div>
+    </div>
+    <span>Success Rate : {{ budget['success_rate'] }}%</span>
+    <div class="budBar">
+        <!-- Dynamic width based on percentage used -->
+        <div class="budBarPer" style="width: {{ budget['success_rate'] }}%;"></div>
+    </div>
+</div>
+{% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

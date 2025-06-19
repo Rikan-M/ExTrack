@@ -1,0 +1,129 @@
+footer{
+    margin-top: 2rem;
+    width: 100%;
+    min-height: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 0;
+    background-color:#333446;
+
+}
+.feedback-board{
+    color:black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    background-color: #EAEFEF;
+    color:black;
+    border-radius: 0.5rem;
+}
+.fb-title{
+    color: black;
+    font-weight: 700;
+    align-self: flex-start;
+    font-size: large;
+}
+.feedback-from{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.long-txt{
+    padding:0.5rem;
+    font-size: large;
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
+    width: 18rem;
+    height: 18rem;
+    overflow: auto;
+    border-radius: 0.5rem;
+
+}
+.star-rating{
+    display: flex;
+    justify-content: left;
+    flex-direction: row-reverse;
+    
+    font-size: 25px;
+
+}
+.star-rating input{
+    display: none;
+}
+.star-rating label{
+    
+   color:rgb(160, 160, 160);
+   transition: color 0.3s;
+}
+.star-rating input:checked ~ label, .star-rating label:hover ~ label{
+    color: gold;
+}
+.star-rating{
+    margin:1rem;
+    width:18rem;
+    padding:0 0.5rem;
+}
+.feedback-btn{
+    font-size: larger;
+    margin: 1rem;
+    border:1px solid black;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    height:2rem;
+    width:20rem;
+    background-color: rgb(0, 140, 255);
+    color:white;
+}
+.acknoledgement{
+    padding: 1rem 0;
+    color: white;
+    font-weight: 700;
+}
+@media (max-width:600px) {
+    .feedback-board{
+        width: 80%;
+        padding: 0.5rem;
+    }
+    .fb-title{
+        font-weight: 600;
+        font-size: 14px;
+    }
+    
+    .long-txt{
+        padding:0.5rem;
+        font-size: 14px;
+        font-family: Arial, Helvetica, sans-serif;
+        color: black;
+        width: 90%;
+        height: 14rem;
+        overflow: auto;
+        border-radius: 0.5rem;
+    
+    }
+    .star-rating{
+        margin:1rem;
+        width:10rem;
+        padding:0 0.5rem;
+        align-self: flex-start;
+        font-size: 20px;
+    
+    }
+    
+    .feedback-btn{
+        font-size: 14px;
+        margin: 1rem;
+        height:1.8rem;
+        width:13rem;
+    }
+    .acknoledgement{
+        padding: 1rem 0;
+        font-size: 14px;
+        color: white;
+        font-weight: 700;
+    }
+}

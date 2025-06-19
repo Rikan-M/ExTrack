@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ExTrack{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static' , filename='css/auth_style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/footer.css') }}">
+</head>
+<body>
+    <header>
+        <div class="hero-sec">
+            <div class="hero-title">
+                <h1>ExTrack</h1>
+                <h3>Track Your Daily Expanses With ExTrack</h3>
+            </div>
+
+            
+        </div>
+        <div class="statusbar">
+            {% with messages=get_flashed_messages(with_categories=True) %}
+            {% for cate,msg in messages %}
+            <p class="{{cate|lower}} flashed-msg">{{msg}}</p>
+            {% endfor %}
+            {% endwith %}
+        </div>
+    </header>
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+    <footer>
+        {% block auth_footer %}
+        <div class="feedback-board">
+            <div class="fb-title">Leave a Review</div>            
+            <form action="{{ url_for('auth.feedback') }}"method="POST" class="feedback-from"> 
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <div class="star-rating">
+                    {% for i in range(5,0,-1) %}
+                    <input type="radio" name="star" id="star-{{ i }}" value= "{{i}}">
+                    <label for="star-{{ i }}">&#9733</label>
+                    {% endfor %}
+                </div>
+                <textarea name="feedback" class="long-txt" placeholder="Your Feedback" required></textarea>s
+                <input type="submit" value="Send Feedback" class="feedback-btn">
+            </form>
+        </div>
+        
+        <span class="acknoledgement">@2025 made by rikan maji</span>
+        {% endblock %}
+        
+    </footer>
+
+</body>
+</html>

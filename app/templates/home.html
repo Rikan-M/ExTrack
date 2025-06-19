@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Home page{% endblock %}
+{% block content %}
+<div class="add-category gls-efct">
+    
+    <form action="{{ url_for('cont.add_category') }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <div class="inp-sec-div">
+            <input type="text" name="category_name" placeholder="Enter Category Name" class="add-inp" required maxlength="64">
+            <div class="inpBarTitle">Add New Category</div>
+            <input type="submit" value="+Add" class="add-btn">
+        </div>
+        <textarea name="description" placeholder="Description" id="category-des" maxlength="200"></textarea>
+        
+    </form>
+</div>
+{% if categories %}
+<div class="container">
+    <span class="plain-text">Categories</span>
+    <div class="cate-frame">
+        <input type="button" value="<" class="gls-efct slide-btn" onclick="goPrev()">
+        <div class="display-cate ">
+        {% for category in categories %}
+        <div class="category  cate-{{ category.id%4 }}">
+            <h4>{{ category.name }}</h4>
+            <p>{{ category.description }}</p>
+            <form action="{{ url_for('cont.go_to_category' , cate_id=category.id)}}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <input type="submit" value="GoTo >" class="gls-efct">
+            </form>
+        </div>
+        {% endfor %}
+        </div>
+        <input type="button" value=">" class="gls-efct slide-btn" onclick="goNext()">
+    </div>
+</div>
+{% endif %}
+
+
+{% endblock %}
